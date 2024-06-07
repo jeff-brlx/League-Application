@@ -13,14 +13,14 @@ public class DayController {
         this.dayRepository= dayRepository;
     }
     @PostMapping
-    public ResponseEntity<Season> create(@RequestBody Day day){
+    public ResponseEntity<Day> createDay(@RequestBody Day day){
         if (day.getDayNumber() == null || day.getDate() == null || day.getSeason()== null) {
             return ResponseEntity.status(400).build();
         }
-        if (seasonRepository.existsByLabel(season.getLabel())) {
+        if (dayRepository.existsByDayNumberAndSeasonId(day.getDayNumber(), day.getSeason().getId())) {
             return ResponseEntity.status(400).build();
         }
-        Season savedSeason = seasonRepository.save(season);
-        return ResponseEntity.status(201).body(savedSeason);
+        Day savedDay = dayRepository.save(day);
+        return ResponseEntity.status(201).body(savedDay);
     }
 }

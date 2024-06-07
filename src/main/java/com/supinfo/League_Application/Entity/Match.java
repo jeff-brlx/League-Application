@@ -18,10 +18,6 @@ public class Match {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "match_seq")
     @SequenceGenerator(name="match_seq",allocationSize = 1,initialValue = 1000)
     private Long id;
-    @Column(name = "score_team_home",nullable = true) //pas demander dans le sujet
-    private Integer scoreTeamHome;
-    @Column(name = "score_team_away",nullable = true) // pas demander dans le sujet
-    private Integer scoreTeamAway;
     @Column(name = "match_date", nullable = false)
     private LocalDateTime matchDate;
     ;

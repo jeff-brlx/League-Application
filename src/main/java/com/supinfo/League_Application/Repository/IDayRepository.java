@@ -6,5 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IDayRepository extends JpaRepository<Day, Long> {
+    boolean existsByDayNumberAndSeasonId(Integer dayNumber, Long season);
     boolean existsBySeasonId(Long seasonId);
 }

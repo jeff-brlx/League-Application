@@ -18,7 +18,7 @@ public class SeasonController {
         this.dayRepository = dayRepository;
     }
     @PostMapping
-    public ResponseEntity<Season> create(@RequestBody Season season){
+    public ResponseEntity<Season> createSeason(@RequestBody Season season){
         if (season.getLabel() == null ) {
             return ResponseEntity.status(400).build();
         }
@@ -29,12 +29,12 @@ public class SeasonController {
         return ResponseEntity.status(201).body(savedSeason);
     }
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id){
+    public ResponseEntity<Void> deleteSeason(@PathVariable Long id){
         if (!seasonRepository.existsById(id)) {
             return ResponseEntity.notFound().build();
         }
         if (dayRepository.existsBySeasonId(id)) {
-            return ResponseEntity.badRequest().body(null); 
+            return ResponseEntity.badRequest().body(null);
         }
         seasonRepository.deleteById(id);
         return ResponseEntity.noContent().build();//revoir le message d'erreur

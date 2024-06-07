@@ -17,7 +17,7 @@ public class Match {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "match_seq")
     @SequenceGenerator(name="match_seq",allocationSize = 1,initialValue = 1000)
-    private Long id;
+    private Long match_id;
     @Column(name = "score_team_home",nullable = true) //pas demander dans le sujet
     private Integer scoreTeamHome;
     @Column(name = "score_team_away",nullable = true) // pas demander dans le sujet

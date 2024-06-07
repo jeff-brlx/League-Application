@@ -1,6 +1,7 @@
 package com.supinfo.League_Application.Entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -9,12 +10,13 @@ import java.util.List;
 
 
 @Entity
-@Table(name = "matchs")
+@Table(name = "matches")
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties("day")
 public class Match {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "match_seq")

@@ -1,5 +1,6 @@
 package com.supinfo.League_Application.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -16,6 +17,7 @@ import java.util.Objects;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class Day {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "day_seq")

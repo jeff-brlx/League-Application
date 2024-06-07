@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 
 @Entity
-@Table(name = "matches")
+@Table(name = "matchs")
 @Getter
 @Setter
 @ToString
@@ -16,11 +16,18 @@ import java.time.LocalDateTime;
 public class Match {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "match_seq")
-    @SequenceGenerator(name="match_seq",allocationSize = 1,initialValue = 1000)
+    @SequenceGenerator(name = "match_seq", allocationSize = 1, initialValue = 1000)
     private Long id;
+    @Column(name = "score_team_home", nullable = true) //pas demander dans le sujet
+    private Integer scoreTeamHome;
+    @Column(name = "score_team_away", nullable = true) // pas demander dans le sujet
+    private Integer scoreTeamAway;
     @Column(name = "match_date", nullable = false)
     private LocalDateTime matchDate;
     ;
+    @Column(name = "match_status", nullable = false)
+    private String matchStatus;
+
     @ManyToOne(optional = false)
     private Day day;
     @ManyToOne(optional = false)
@@ -28,4 +35,7 @@ public class Match {
     @ManyToOne(optional = false)
     private Team teamAway;
 
+    public void setStatus(String status) {
+        this.matchStatus = status;
+    }
 }

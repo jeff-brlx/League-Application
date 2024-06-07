@@ -24,6 +24,7 @@ public class Match {
     private Team teamHome;
     @ManyToOne(optional = false)
     private Team teamAway;
+    private String matchStatus;
 
     public void setStatus(String status) {
         this.matchStatus = status;

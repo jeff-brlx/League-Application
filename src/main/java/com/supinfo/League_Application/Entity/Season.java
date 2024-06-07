@@ -3,6 +3,7 @@ package com.supinfo.League_Application.Entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -20,8 +21,8 @@ public class Season {
     @Column(name = "label",unique = true,nullable = false)
     private String label;
 
-    /*@OneToMany(mappedBy = "season")
-    private List<Day> days = new ArrayList<>();*/
+    @OneToMany(mappedBy = "season")
+    private List<Day> days = new ArrayList<>();
 
     @ManyToMany(mappedBy = "seasons")
     private List<Team> teams;

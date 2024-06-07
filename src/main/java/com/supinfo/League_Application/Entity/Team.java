@@ -3,8 +3,10 @@ package com.supinfo.League_Application.Entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
-@Table(name="Teams")
+@Table(name="team")
 @Getter
 @Setter
 @ToString
@@ -17,4 +19,6 @@ public class Team {
     private Long id;
     @Column(name="name", nullable = false,unique = true)
     private String name;
+    @ManyToMany
+    private List<Season> seasons;
 }

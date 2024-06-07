@@ -1,10 +1,8 @@
 package com.supinfo.League_Application.Controller;
 
 import com.supinfo.League_Application.Entity.Match;
-import com.supinfo.League_Application.Entity.Season;
 import com.supinfo.League_Application.Entity.Team;
 import com.supinfo.League_Application.Repository.IMatchRepository;
-import com.supinfo.League_Application.Repository.ISeasonRepository;
 import com.supinfo.League_Application.Repository.ITeamRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,29 +27,12 @@ public class MatchController {
     // Créer un match
     @PostMapping
     public ResponseEntity<Match> createMatch(@RequestBody Match match) {
-
-        // Vérifier l'existence des équipes
-        Optional<Team> homeTeam = teamRepository.findById(match.getTeamHome().getId());
-        Optional<Team> awayTeam = teamRepository.findById(match.getTeamAway().getId());
-
-
-        if (homeTeam.isEmpty() || awayTeam.isEmpty()) {
-            return ResponseEntity.badRequest().body(null); // Vérifie que les équipes existent
+        if (match.getTeamHome() == null || match.getTeamAway() == null) {
+            return ResponseEntity.badRequest().body(null);
         }
-
-        Season season = match.getDay().getSeason();
-        if (!homeTeam.get().getSeasons().contains(season) || !awayTeam.get().getSeasons().contains(season)) {
-            return ResponseEntity.status(400).body(null); // Les équipes doivent être inscrites dans la saison
-        }
-
-        // Affecter les équipes au match
-        match.setTeamHome(homeTeam.get());
-        match.setTeamAway(awayTeam.get());
-
         Match savedMatch = matchRepository.save(match);
         return ResponseEntity.ok(savedMatch);
     }
-
     // Récupérer tous les matchs
     @GetMapping
     public ResponseEntity<List<Match>> getAllMatches() {
@@ -65,6 +46,7 @@ public class MatchController {
     // Récupérer un match par ID
     @GetMapping("/{id}")
     public ResponseEntity<Match> getMatchById(@PathVariable Long id) {
+
         return matchRepository.findById(id)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());

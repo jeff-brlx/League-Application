@@ -33,8 +33,9 @@ public class SeasonController {
         if (!seasonRepository.existsById(id)) {
             return ResponseEntity.notFound().build();
         }
-
-
+        if (dayRepository.existsBySeasonId(id)) {
+            return ResponseEntity.badRequest().body(null); 
+        }
         seasonRepository.deleteById(id);
         return ResponseEntity.noContent().build();//revoir le message d'erreur
     }

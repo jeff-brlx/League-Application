@@ -7,9 +7,8 @@ import lombok.Setter;
 @Setter
 @Getter
 @Entity
-public class Comment {
 
-    // Getters and setters
+public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -19,5 +18,30 @@ public class Comment {
     @ManyToOne
     @JoinColumn(name = "match_id")
     private Match match;
+
+    // Getters and setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public Match getMatch() {
+        return match;
+    }
+
+    public void setMatch(Match match) {
+        this.match = match;
+    }
 
 }

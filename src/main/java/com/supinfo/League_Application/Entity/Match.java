@@ -18,9 +18,6 @@ public class Match {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "match_seq")
     @SequenceGenerator(name="match_seq",allocationSize = 1,initialValue = 1000)
     private Long id;
-    @Column(name = "match_date", nullable = false)
-    private LocalDateTime matchDate;
-    ;
     @ManyToOne(optional = false)
     private Day day;
     @ManyToOne(optional = false)

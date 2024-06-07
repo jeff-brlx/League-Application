@@ -1,5 +1,6 @@
 package com.supinfo.League_Application.Entity;
 
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -13,6 +14,8 @@ import java.util.List;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties("teams")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Season {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "season_seq")

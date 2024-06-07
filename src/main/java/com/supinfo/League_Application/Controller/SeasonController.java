@@ -17,6 +17,7 @@ public class SeasonController {
         this.seasonRepository = seasonRepository;
         this.dayRepository = dayRepository;
     }
+
     @PostMapping
     public ResponseEntity<Season> createSeason(@RequestBody Season season){
         if (season.getLabel() == null ) {

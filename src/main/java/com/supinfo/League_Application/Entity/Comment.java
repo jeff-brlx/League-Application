@@ -1,5 +1,7 @@
 package com.supinfo.League_Application.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -7,7 +9,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @Entity
-
+@JsonIgnoreProperties("match")
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,9 +19,9 @@ public class Comment {
 
     @ManyToOne
     @JoinColumn(name = "match_id")
+    @JsonManagedReference
     private Match match;
 
-    // Getters and setters
     public Long getId() {
         return id;
     }

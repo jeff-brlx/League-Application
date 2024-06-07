@@ -1,6 +1,8 @@
 server:
   port: 9090
 spring:
+  security:
+    enabled: false
   application:
     name: League-Application
   datasource:
@@ -9,7 +11,7 @@ spring:
     password:
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     properties:
       hibernate:
         show_sql: true

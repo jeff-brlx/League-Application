@@ -6,7 +6,11 @@ import com.supinfo.League_Application.Repository.IDayRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+@RestController
+@RequestMapping("/days")
 public class DayController {
     private final IDayRepository dayRepository;
     public DayController(IDayRepository dayRepository){

@@ -1,9 +1,11 @@
 package com.supinfo.League_Application.Entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 @Entity
@@ -34,8 +36,15 @@ public class Match {
     private Team teamHome;
     @ManyToOne(optional = false)
     private Team teamAway;
+    @OneToMany(mappedBy = "match")
+    @JsonBackReference
+    private List<Comment> comments;
 
     public void setStatus(String status) {
         this.matchStatus = status;
+    }
+
+    public String getStatus() {
+        return this.matchStatus;
     }
 }

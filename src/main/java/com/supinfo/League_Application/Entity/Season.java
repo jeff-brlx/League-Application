@@ -17,8 +17,8 @@ public class Season {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "season_seq")
     @SequenceGenerator(name="season_seq",allocationSize = 1,initialValue = 1000)
     private Long id;
-    @Column(name = "description",unique = true,nullable = false)
-    private String description;
+    @Column(name = "label",unique = true,nullable = false)
+    private String label;
 
     /*@OneToMany(mappedBy = "season")
     private List<Day> days = new ArrayList<>();*/
